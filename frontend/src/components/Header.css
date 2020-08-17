@@ -1,0 +1,15 @@
+header#main-header {
+    background-color: #FFF;
+    border-bottom: 1px solid #DDD;
+}
+
+div.header-content {
+    width: 100%;
+    max-width: 980px;
+    margin: 0 auto;
+    height: 72px;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
