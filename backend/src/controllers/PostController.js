@@ -9,7 +9,7 @@ const PostController = {
         const posts = await Post.find().sort('-createdAt');
         return res.json(posts);
     },
-    store: async (req, res) => {        
+    store: async (req, res) => {
         const { author, place, description, hashtags } = req.body;
         const { filename, destination } = req.file;
 
@@ -21,18 +21,23 @@ const PostController = {
             )
 
         fs.unlinkSync(req.file.path);
-        
+
         const post = await Post.create({
             author,
             place,
             description,
-            hashtags, 
+            hashtags,
             image: filename
         })
 
         req.io.emit('post', post);
 
         return res.json(post);
+    },
+    delete: async (req, res) => {
+        await Post.deleteOne({ _id: req.params.id });
+        const posts = await Post.find().sort('-createdAt');
+        return res.json(posts);
     }
 }
 
