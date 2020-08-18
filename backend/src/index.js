@@ -18,7 +18,7 @@ mongoose.connect(process.env.MONGODB, {
 
 app.use((req, res, next) => {
     req.io = io;
-    next;
+    next();
 })
 
 app.use(cors()); 
